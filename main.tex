@@ -21,16 +21,57 @@ style=authoryear,
 
 \addbibresource{gingado.bib}
 
+
+
 \title{\textit{gingado}: a machine learning library focused on economics and finance}
-\author{Douglas Araujo}
-\date{8 February 2022, draft - Please do not cite}
+\author{Douglas Araujo\footnote{Economist, Bank for International Settlements. douglas.araujo@bis.org. The views expressed in this paper are those of the author and do not necessarily represent the views of the Bank for International Settlements. The author is thankful to Rodrigo Coelho, Emanuel Kohlscheen, Bruno Sabóia and participants at the Irving Fischer Committee-Banca D'Italia workshop "Data science in central banking - Part 2: Data Science in Central Banking: Applications and tools" in February 2022. All errors and omissions are attributable to the author.}}
+\date{This version: 31 May 2022\\First version: 8 February 2022.}
 
 \begin{document}
 
 \maketitle
 
 \section{Introduction}
-\textit{gingado} is an open-source machine learning library\footnote{The code will be available on https://github.com/dkgaraujo/gingado after mid-February 2022. Issues, feature requests and pull requests wit code suggestions or corrections are all welcome.} that aims to broaden the accessibility of state-of-the-art models to a wide range of practitioners in economics and finance, including beginners. The focus is on promoting good modelling practices and providing an accessible interface to economists, statisticians and other practitioners, some of whom may not be necessarily experts in machine learning. The good modelling practices are encouraged through functionalities that help users establish a quick and reasonable benchmark model, as well as an easy way to document their model. In its turn, the accessibility of \textit{gingado} comes from its design that keeps many of the complexities under the hood - although they are accessible to advanced users that need to customise certain aspects. 
+Machine learning (ML) techniques have featured in the economics and finance literature for some time, but have recently found increasingly broad application in various fields by academics and practitioners alike. For example, until a few years ago it was rare for the most impactful academic journal issues in economics and finance to contain a paper using or studying ML methods. Conversely, \cite{Folklore}, \cite{MLMedicalError} and \cite{giannone2021illusion} are all recent works (among others) that illustrate the diverse applications of machine learning across many fields. Similarly, on the practitioner side, the rise of ML-powered lenders (as discussed, for example, by \cite{predunequal}) underscore the growth in the use of ML. The growth in the frequency and variety of ML applications in economics and finance mirrors that in numerous other sciences and commercial activities. 
+
+Conceptually, each ML application entails the combination of a specific dataset, model, cost function and optimisation procedure - and each of these components can be replaced broadly independently from the others (\cite{DeepLearning}). Hence, creating a functioning ML application is a fairly artisanal process that requires multiple iteration by the analyst until a satisfactory result is achieved. Two inefficiencies in this process stand out:
+
+First, many datasets are publicly available and in many cases users have access to more relevant data, but that does not mean they can be readily used by ML models. There is also to the best of my knowledge no automated, ready-to-use routine to allow loading additional data and test if their inclusion in the orginal dataset actually improves the ML application or not. For this reason, it is reasonable to expect that in practice, either a low or an excessively high amount of the data available are used in ML training. Second, the diversity of ML models from which to choose, compounded by the virtually infinite possible combination of parameters of each model, create a situation where the model chosen by the analyst could result in (relatively) poor performance. At the same time, it is also complicated to evaluate any progress in modelling without a benchmark, and creating one leads the analyst back to the same search problem.
+
+A third major issue is not related to efficiency per se, but is also important. ML in economics and finance is often done in the context of organisations, such as academic institutions, banks, etc. Each of these situations calls for some form of model documentation, spanning a brief write down of the model's architecture for simple and circumscribed use cases, to more complete documents where these models are used publicly.
+
+\textit{gingado} is an open source library that seeks to address these issues and thus to facilitate the use of machine learning in economics and finance use cases, while promoting good practices. Its main contributions are threefold. First, \textit{gingado} enables \textbf{data augmentation} of the original user dataset with statistical series from official sources, in a way that is relevant for each case and testable to check that the additional data is indeed useful to improve the model's performance. Second, \textit{gingado} provides \textbf{automaic benchmark} models trained quickly for the dataset at hand; the user can also make use of a generic benchmark object to create her own automatic benchmarks. And third, \textit{gingado} facilitates documentation of the model as part of the work flow, automatising some documentation steps to leave users more room for concentrating on more value-added documentation items. 
+
+The development of this library follows three design principles:
+\begin{enumerate}
+    \item \textbf{Flexibility}: users can use \textit{gingado} out of the box or use it to build custom processes and objects that are more suitable for their use cases;
+    \item \textbf{Compatibility}: \textit{gingado} works well with other widely used libraries in data science and machine learning, in particular \textit{scikit-learn} (\cite{scikit-learn}); and
+    \item \textbf{Responsibility}: model documentation and ethical considerations are considered key steps in the modelling process and should be facilitated.
+\end{enumerate}
+In addition, \textit{gingado} is a parsimonious library that seeks to complement rather than redo existing features of other libraries that are widely used by machine learning experts. 
+
+\section{Contributions}
+
+\subsection{Data augmentation}
+
+\subsection{Automatic benchmark}
+
+\subsection{Model documentation}
+
+\section{Principles}
+
+\subsection{Flexibility}
+
+\subsection{Compatibility}
+
+The programming interface of \textit{gingado}'s objects is compatible with \textit{scikit-learn}'s by choice. \textit{scikit-learn} is one of the premier libraries for machine learning and data science, and is widely used in both academia, industry and . As a consequence, users should be 
+
+\subsection{Responsibility}
+
+
+\section{OTHER}
+
+\textit{gingado} is an open-source machine learning library that aims to broaden the accessibility of state-of-the-art models to academics and practitioners in economics and finance, including beginners.\footnote{The code is available on https://github.com/dkgaraujo/gingado. Issues, feature requests and pull requests wit code suggestions or corrections are all welcome.} The focus is on providing an accessible interface to economists, statisticians and other practitioners, some of whom may not be necessarily experts in machine learning, while promoting good modelling practices. These objectives are promoted through functionalities that help users establish a quick and reasonable benchmark model, as well as an easy way to document their model. In its turn, the accessibility of \textit{gingado} comes from its design, keeping many of the complexities under the hood - although they are accessible to advanced users that need to customise certain aspects. 
 
 Even while accessibility and good practices are priorities for \textit{gingado}, it offers good performance in terms of speed, since the model computations are performed by widely used backend engines that are well known for their performances and high computation efficiency. These libraries are \texttt{scikit-learn}, \texttt{XGBoost}, \texttt{PyTorch} and \texttt{TensorFlow}. Most notably, the training of some models \textit{gingado} can be accelerated by graphical processing units (GPU).\footnote{Currently \texttt{XGBoost} only supports graphics cards using CUDA (NVidia), \texttt{PyTorch} can only accelerate calculations on GPUs using the CUDA and ROCm (AMD cards) libraries, although there are indications from the maintainers that in the near future also the Metal framework (Apple) will be supported, and \texttt{TensorFlow} accelerates on these three graphics cards previously mentioned.} An overview of \textit{gingado}'s philosophy, license, and high-level description of its design is found in section \ref{overview} and the ways the machine learning backends are used by \textit{gingado} are outlined in section \ref{backends}.
 
@@ -160,7 +201,7 @@ The automatic benchmark created is a neural network with fine-tuned parameters.\
 
 The main fixed parameters (ie, not subject to fine-tuning in the automated benchmark version) are the optimizer itself, the activation function,\footnote{Ie, the non-linear function that will transform the integral data into another data.} the number of epochs that the model is trained for (100), and the "patience"  of the callback function for early stopping (ie, the number of consecutive epochs that the model will wait without improvement before stopping the training).
 
-
+%%% CONSIDER MOVING TO RANDOM FORESTS () \cite{breiman2001random}
 
 % \subsection{Performance of benchmark model}
 % Three different tabular datasets commonly used in the literature for benchmarking performance are used to demonstrate that the benchmark model automatically created by \textit{gingado} offers reasonable performance.
