@@ -12,4 +12,4 @@ Any comments, suggestions, questions or criticisms on issues are [welcome](https
 
 ## May 2022
 
-video | [slides](https://github.com/dkgaraujo/gingado_comms/blob/main/20220526%20Royal%20Statistical%20Society/20220526%20RSS%20gingado.pdf)
+[video](https://www.youtube.com/watch?v=NKFUR8qn5I0) | [slides](https://github.com/dkgaraujo/gingado_comms/blob/main/20220526%20Royal%20Statistical%20Society/20220526%20RSS%20gingado.pdf)
